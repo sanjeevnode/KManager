@@ -1,4 +1,4 @@
-import Homepage from '@/components/Homepage'
+import Homepage from '@/components/home/Homepage'
 import React from 'react'
 
 export default function App() {

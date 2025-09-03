@@ -30,7 +30,14 @@ class UserService{
     async getUser({ email }: { email: string }): Promise<TUser | null> {
         await connectDB();
         const user = await User.findOne({ email });
-        return user;
+        if(!user) return null;
+        return {
+            name: user.name,
+            email: user.email,
+            image: user.image,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
+        };
     }
 
     async updateUser({ email, name, image }: { email: string; name: string; image?: string }): Promise<TUser | null> {
@@ -40,7 +47,13 @@ class UserService{
             { name, image },
             { new: true }
         );
-        return user;
+        return {
+            name: user.name,
+            email: user.email,
+            image: user.image,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
+        };
     }
 }
 
