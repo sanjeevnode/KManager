@@ -5,14 +5,13 @@ import { TUser } from "@/types/user";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import LoginCard from "../LoginCard";
-import { NavItems } from "../navitems";
 import MySecrets from "./MySecrets";
-import NewSecret from "./NewSecret";
-import MyAccount from "./MyAccount";
+import Profile from "./Profile";
 import Loading from "../Loading";
+import navigationStore from "@/store/navigationStore";
 
 export default function Homepage() {
-    const [navIndex, setNavIndex] = useState<number>(0);
+    const navIndex = navigationStore((state) => state.navIndex);
     const [user, setUser] = useState<TUser | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const session = useSession();
@@ -28,7 +27,7 @@ export default function Homepage() {
                 return;
             }
             
-            // Don't fetch if we already have user data
+            
             if (user) {
                 return;
             }
@@ -59,16 +58,14 @@ export default function Homepage() {
             case 0:
                 return <MySecrets />
             case 1:
-                return <NewSecret />
-            case 2:
-                return <MyAccount />
+                return <Profile />
             default:
                 return <></>
         }
     }
     return (
         <div className="flex flex-col h-full">
-            <NavItems navIndex={navIndex} setNavIndex={setNavIndex} />
+            {/* <NavItems /> */}
             {getView()}
         </div>
     )

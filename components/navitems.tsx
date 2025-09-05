@@ -1,5 +1,8 @@
+"use client";
+
 import { List, Plus, User } from "lucide-react";
 import { JSX } from "react";
+import navigationStore from "@/store/navigationStore";
 
 export type NavItemType = {
   label: string;
@@ -21,7 +24,10 @@ export const navItems: NavItemType[] = [
   },
 ];
 
-export function NavItems({ navIndex, setNavIndex }: { navIndex: number; setNavIndex: (idx: number) => void }) {
+export function NavItems() {
+  const navIndex = navigationStore((state) => state.navIndex);
+  const setNavIndex = navigationStore((state) => state.setNavIndex);
+  
   return (
     <div className="w-full flex items-center justify-center h-fit">
       {navItems.map((item, idx) => (
