@@ -9,7 +9,7 @@ export default function Navbar() {
     const session = useSession();
     return (
         <nav className="fixed top-0 w-full h-16 bg-white z-50">
-            <div className="mx-auto max-w-7xl flex items-center justify-between py-2  h-full md:px-6 px-4">
+            <div className="mx-auto max-w-7xl flex items-center justify-between py-2  h-full md:px-6 px-4 border-b">
                 <Link href="/" className="flex items-center">
                     <div className="bg-gradient-to-r from-orange-600 to-amber-600 p-1 rounded">
                         <Section className="w-6 h-6 text-white" />
