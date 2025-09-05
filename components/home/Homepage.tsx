@@ -9,24 +9,49 @@ import { NavItems } from "../navitems";
 import MySecrets from "./MySecrets";
 import NewSecret from "./NewSecret";
 import MyAccount from "./MyAccount";
+import Loading from "../Loading";
 
 export default function Homepage() {
     const [navIndex, setNavIndex] = useState<number>(0);
-
     const [user, setUser] = useState<TUser | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
     const session = useSession();
 
     useEffect(() => {
         const fetchUser = async () => {
+            if (session.status === "loading") {
+                return; 
+            }
+            
             const u = session.data?.user;
-            if (!u || !u.email) return;
-            const userData = await getUser({ email: u.email });
-            setUser(userData);
+            if (!u || !u.email) {
+                return;
+            }
+            
+            // Don't fetch if we already have user data
+            if (user) {
+                return;
+            }
+            
+            setLoading(true);
+            
+            try {
+                const userData = await getUser({ email: u.email });
+                setUser(userData);
+            } catch (error) {
+                console.error("Error fetching user:", error);
+            } finally {
+                setLoading(false);
+            }
         };
         fetchUser();
-    }, [session.data])
+    }, [session.status, session.data?.user, user]);
 
-    if (!user) {
+    if (session.status === "loading" || loading) {
+        return <Loading />
+    }
+
+    if (session.status === "unauthenticated" || !user) {
         return <LoginCard />
     }
     const getView = () => {
