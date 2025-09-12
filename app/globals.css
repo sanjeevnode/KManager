@@ -119,3 +119,12 @@
   }
 }
 
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, #f54900 0%, #e17100 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
