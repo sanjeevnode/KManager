@@ -10,4 +10,4 @@ const navigationStore = create<NavigationState>((set) => ({
     setNavIndex: (index) => set({ navIndex: index }),
 }));
 
-export default navigationStore;
+export { navigationStore };

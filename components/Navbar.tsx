@@ -4,9 +4,10 @@ import { Menu, Section } from "lucide-react"
 import Link from "next/link"
 import { signOut, useSession } from "next-auth/react"
 import { useCallback, useState } from "react"
-import navigationStore from "@/store/navigationStore"
+
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet"
 import Footer from "./Footer"
+import { navigationStore } from "@/store"
 
 export default function Navbar() {
     const { status } = useSession()
