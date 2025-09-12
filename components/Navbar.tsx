@@ -1,15 +1,15 @@
 "use client"
 
-import { LogOut, Menu, Section } from "lucide-react"
+import { Menu, Section } from "lucide-react"
 import Link from "next/link"
 import { signOut, useSession } from "next-auth/react"
-import Image from "next/image"
 import { useCallback, useState } from "react"
 import navigationStore from "@/store/navigationStore"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet"
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet"
+import Footer from "./Footer"
 
 export default function Navbar() {
-    const { data: session, status } = useSession()
+    const { status } = useSession()
     const navIndex = navigationStore((state) => state.navIndex);
 
     const handleSignOut = useCallback(() => {
@@ -17,7 +17,7 @@ export default function Navbar() {
     }, [])
 
     const isAuthenticated = status === "authenticated"
-    const userImage = session?.user?.image
+    // const userImage = session?.user?.image
 
     if (!isAuthenticated) {
         return <>   </>
@@ -36,17 +36,17 @@ export default function Navbar() {
                 {/* User section */}
 
                 <div className="space-x-6 hidden sm:flex items-center ">
-                    <span className={`text-gray-600 font-medium ${navIndex === 0 ? 'font-bold text-orange-800' : ''} cursor-pointer`}
+                    <span className={`text-gray-800 font-medium ${navIndex === 0 ? 'font-bold text-orange-800' : ''} cursor-pointer`}
                         onClick={() => navigationStore.getState().setNavIndex(0)}
                     >
                         My Secrets
                     </span>
-                    <span className={`text-gray-600 font-medium ${navIndex === 1 ? 'font-bold text-orange-800' : ''} cursor-pointer`}
+                    <span className={`text-gray-800 font-medium ${navIndex === 1 ? 'font-bold text-orange-800' : ''} cursor-pointer`}
                         onClick={() => navigationStore.getState().setNavIndex(1)}
                     >
                         Profile
                     </span>
-                    {userImage && (
+                    {/* {userImage && (
                         <Image
                             src={userImage}
                             alt="User Avatar"
@@ -55,9 +55,14 @@ export default function Navbar() {
                             className="rounded-full object-cover outline"
                             priority={false}
                         />
-                    )}
+                    )} */}
 
-                    <LogOut className="w-5 h-5 cursor-pointer text-gray-600 hover:text-gray-800" onClick={handleSignOut} />
+                    {/* <LogOut className="w-5 h-5 cursor-pointer text-gray-800 hover:text-gray-800" onClick={handleSignOut} /> */}
+                    <span className={`text-gray-800 font-medium cursor-pointer`}
+                        onClick={handleSignOut}
+                    >
+                        Logout
+                    </span>
 
                 </div>
                 <MobileNavbar />
@@ -93,17 +98,17 @@ const MobileNavbar = () => {
                                 <div className="bg-gradient-to-r from-orange-600 to-amber-600 p-1 rounded">
                                     <Section className="w-6 h-6 text-white" />
                                 </div>
-                                <span className="ml-3 text-xl font-bold font-poppins gradient-text">KManager</span>
+                                <span className="ml-3 text-xl font-bold">KManager</span>
                             </Link>
                         </SheetTitle>
                     </SheetHeader>
                     <div className="flex flex-col space-y-2 items-center">
-                        <span className={`text-gray-600 font-medium ${navIndex === 0 ? 'font-bold text-orange-800' : ''} cursor-pointer w-full p-4 border-b `}
+                        <span className={`text-gray-800 font-medium ${navIndex === 0 ? 'font-bold text-orange-800' : ''} cursor-pointer w-full p-4 border-b `}
                             onClick={() => handleItemClick(() => navigationStore.getState().setNavIndex(0))}
                         >
                             My Secrets
                         </span>
-                        <span className={`text-gray-600 font-medium ${navIndex === 1 ? 'font-bold text-orange-800' : ''} cursor-pointer w-full p-4 border-b`}
+                        <span className={`text-gray-800 font-medium ${navIndex === 1 ? 'font-bold text-orange-800' : ''} cursor-pointer w-full p-4 border-b`}
                             onClick={() => handleItemClick(() => navigationStore.getState().setNavIndex(1))}
                         >
                             Profile
@@ -111,14 +116,18 @@ const MobileNavbar = () => {
 
 
                         <span
-                            className="text-gray-600 font-medium cursor-pointer w-full p-4 border-b"
+                            className="text-gray-800 font-medium cursor-pointer w-full p-4 border-b"
                             onClick={() => handleItemClick(handleSignOut)}
                         >
                             Logout
                         </span>
 
                     </div>
+                    <SheetFooter>
+                        <Footer />
+                    </SheetFooter>
                 </SheetContent>
+               
             </Sheet>
         </div>
     )
