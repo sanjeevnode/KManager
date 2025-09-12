@@ -8,7 +8,8 @@ import LoginCard from "../LoginCard";
 import MySecrets from "./MySecrets";
 import Profile from "./Profile";
 import Loading from "../Loading";
-import navigationStore from "@/store/navigationStore";
+import { navigationStore } from "@/store";
+
 
 export default function Homepage() {
     const navIndex = navigationStore((state) => state.navIndex);
