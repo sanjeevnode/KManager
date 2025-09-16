@@ -25,8 +25,8 @@ export default function Navbar() {
         return <>   </>
     }
     return (
-        <nav className="fixed top-0 w-full h-16 bg-white z-50">
-            <div className="mx-auto max-w-7xl flex items-center justify-between py-2 h-full md:px-6 px-4 border-b rounded">
+        <nav className="fixed top-0 w-full h-16 bg-white z-50 md:px-6 px-4">
+            <div className="mx-auto max-w-7xl flex items-center justify-between py-2 h-full  border-b border-orange-100 rounded">
                 {/* Logo section */}
                 <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
                     <div className="bg-gradient-to-r from-orange-600 to-amber-600 p-1 rounded">

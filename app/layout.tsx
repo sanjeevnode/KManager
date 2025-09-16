@@ -24,7 +24,7 @@ export default function RootLayout({
           <ToasterContext />
           <Navbar />
           <div className="flex flex-col items-center h-screen pt-16 px-4">
-            <main className="w-full max-w-7xl flex-1 md:p-6 p-4">{children}</main>
+            <main className="w-full max-w-7xl flex-1">{children}</main>
             <Footer />
           </div>
         </AuthContext>

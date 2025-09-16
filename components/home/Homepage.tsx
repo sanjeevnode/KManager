@@ -5,7 +5,7 @@ import { TUser } from "@/types/user";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import LoginCard from "../LoginCard";
-import MySecrets from "./MySecrets";
+import MySecrets from "./MySecrets/MySecrets";
 import Profile from "./Profile";
 import Loading from "../Loading";
 import { navigationStore } from "@/store";
@@ -66,7 +66,7 @@ export default function Homepage() {
         }
     }
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full  md:py-6 py-4">
             {/* <NavItems /> */}
             {getView()}
         </div>
