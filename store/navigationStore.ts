@@ -1,13 +1,18 @@
+import { MySecretsNav, NavIndex } from "@/types";
 import { create } from "zustand";
 
 type NavigationState = {
-    navIndex: number;
-    setNavIndex: (index: number) => void;
+  navIndex: NavIndex;
+  setNavIndex: (index: NavIndex) => void;
+  mySecretsNav: MySecretsNav;
+  setMySecretsNav: (index: MySecretsNav) => void;
 };
 
 const navigationStore = create<NavigationState>((set) => ({
-    navIndex: 0,
+    navIndex: NavIndex.MYSECRETS,
     setNavIndex: (index) => set({ navIndex: index }),
+    mySecretsNav: MySecretsNav.ALL,
+    setMySecretsNav: (index) => set({ mySecretsNav: index }),
 }));
 
 export { navigationStore };

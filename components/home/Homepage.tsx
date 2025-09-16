@@ -9,6 +9,7 @@ import MySecrets from "./MySecrets";
 import Profile from "./Profile";
 import Loading from "../Loading";
 import { navigationStore } from "@/store";
+import { NavIndex } from "@/types";
 
 
 export default function Homepage() {
@@ -56,9 +57,9 @@ export default function Homepage() {
     }
     const getView = () => {
         switch (navIndex) {
-            case 0:
+            case NavIndex.MYSECRETS:
                 return <MySecrets />
-            case 1:
+            case NavIndex.PROFILE:
                 return <Profile />
             default:
                 return <></>

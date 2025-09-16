@@ -8,6 +8,7 @@ import { useCallback, useState } from "react"
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet"
 import Footer from "./Footer"
 import { navigationStore } from "@/store"
+import { NavIndex } from "@/types"
 
 export default function Navbar() {
     const { status } = useSession()
@@ -37,13 +38,13 @@ export default function Navbar() {
                 {/* User section */}
 
                 <div className="space-x-6 hidden sm:flex items-center ">
-                    <span className={`text-gray-800 font-medium ${navIndex === 0 ? 'font-bold text-orange-800' : ''} cursor-pointer`}
-                        onClick={() => navigationStore.getState().setNavIndex(0)}
+                    <span className={`text-gray-800 font-medium ${navIndex === NavIndex.MYSECRETS ? 'font-bold text-orange-800' : ''} cursor-pointer`}
+                        onClick={() => navigationStore.getState().setNavIndex(NavIndex.MYSECRETS)}
                     >
                         My Secrets
                     </span>
-                    <span className={`text-gray-800 font-medium ${navIndex === 1 ? 'font-bold text-orange-800' : ''} cursor-pointer`}
-                        onClick={() => navigationStore.getState().setNavIndex(1)}
+                    <span className={`text-gray-800 font-medium ${navIndex === NavIndex.PROFILE ? 'font-bold text-orange-800' : ''} cursor-pointer`}
+                        onClick={() => navigationStore.getState().setNavIndex(NavIndex.PROFILE)}
                     >
                         Profile
                     </span>
@@ -104,13 +105,13 @@ const MobileNavbar = () => {
                         </SheetTitle>
                     </SheetHeader>
                     <div className="flex flex-col space-y-2 items-center">
-                        <span className={`text-gray-800 font-medium ${navIndex === 0 ? 'font-bold text-orange-800' : ''} cursor-pointer w-full p-4 border-b `}
-                            onClick={() => handleItemClick(() => navigationStore.getState().setNavIndex(0))}
+                        <span className={`text-gray-800 font-medium ${navIndex === NavIndex.MYSECRETS ? 'font-bold text-orange-800' : ''} cursor-pointer w-full p-4 border-b `}
+                            onClick={() => handleItemClick(() => navigationStore.getState().setNavIndex(NavIndex.MYSECRETS))}
                         >
                             My Secrets
                         </span>
-                        <span className={`text-gray-800 font-medium ${navIndex === 1 ? 'font-bold text-orange-800' : ''} cursor-pointer w-full p-4 border-b`}
-                            onClick={() => handleItemClick(() => navigationStore.getState().setNavIndex(1))}
+                        <span className={`text-gray-800 font-medium ${navIndex === NavIndex.PROFILE ? 'font-bold text-orange-800' : ''} cursor-pointer w-full p-4 border-b`}
+                            onClick={() => handleItemClick(() => navigationStore.getState().setNavIndex(NavIndex.PROFILE))}
                         >
                             Profile
                         </span>
